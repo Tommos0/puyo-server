@@ -12,6 +12,6 @@ find_package(Boost COMPONENTS system REQUIRED)
 
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS}) 
-    add_executable(progname puyo-server src/puyo-server) 
-    target_link_libraries(progname ${Boost_LIBRARIES})
+    add_executable(puyo-server src/puyo-server.cpp) 
+    target_link_libraries(puyo-server ${Boost_LIBRARIES})
 endif()
