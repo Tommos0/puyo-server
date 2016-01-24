@@ -6,12 +6,27 @@
 
 using boost::asio::ip::tcp;
 
+
+
+class command {
+    public:
+            command() { }
+};
+
+class game {
+    public:
+       game () { };
+       std::vector<command> commandBuffer;
+};
+
 class session
   : public std::enable_shared_from_this<session>
 {
 public:
-  session(tcp::socket socket) : socket_(std::move(socket)) {
+  session(tcp::socket socket, game g) :  socket_(std::move(socket)), game_(g)  {
     }
+  session(tcp::socket socket) :  socket_(std::move(socket))  { }
+  game game_;
 
   void start()
   {
@@ -28,6 +43,10 @@ private:
           if (!ec)
           {
             do_write(length);
+
+            command c;
+//            self->game_.commandBuffer.push_back(c);
+
           }
         });
   }
@@ -48,11 +67,6 @@ private:
   tcp::socket socket_;
   enum { max_length = 1024 };
   char data_[max_length];
-};
-
-class command {
-    public:
-            command() { }
 };
 
 
