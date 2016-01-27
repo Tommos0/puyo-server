@@ -3,9 +3,12 @@
 #include <memory>
 #include <utility>
 #include <boost/asio.hpp>
+#ifdef CURSES
 extern "C" {
     #include <curses.h>
 }
+#endif
+
 using boost::asio::ip::tcp;
 
 
@@ -101,9 +104,10 @@ private:
   tcp::socket socket_;
 };
 
-int main(int argc, char* argv[])
-{
-    WINDOW * mainwin;
+#ifdef CURSES
+void curses_print() {
+
+ WINDOW * mainwin;
  if ( (mainwin = initscr()) == NULL ) {
         fprintf(stderr, "Error initialising ncurses.\n");
         exit(EXIT_FAILURE);
@@ -124,6 +128,16 @@ int main(int argc, char* argv[])
     delwin(mainwin);
     endwin();
     refresh();
+
+
+}
+#endif
+
+int main(int argc, char* argv[])
+{
+#ifdef CURSES
+    curses_print();
+#endif
   try
   {
     if (argc != 2)
