@@ -28,7 +28,7 @@ class session
   : public std::enable_shared_from_this<session>
 {
 public:
-  session(tcp::socket socket, game g) :  socket_(std::move(socket)), game_(g)  {
+  session(tcp::socket socket, game g) :  game_(g), socket_(std::move(socket)) {
     }
   session(tcp::socket socket) :  socket_(std::move(socket))  { }
   game game_;
