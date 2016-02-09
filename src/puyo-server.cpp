@@ -1,8 +1,6 @@
 #include <cstdlib>
 #include <iostream>
 #include <memory>
-#include <utility>
-#include <boost/asio.hpp>
 #include "network.h"
 #include "game.h"
 
@@ -44,6 +42,5 @@ int main(int argc, char* argv[])
 #endif
   auto game1 = std::unique_ptr<Game>(new Game());
   auto game2 = std::unique_ptr<Game>(new Game());
-
   return 0;
 }

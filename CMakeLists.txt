@@ -13,8 +13,12 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb ")
 set(CMAKE_CXX_FLAGS_RELEASE "-g0 -O3 ")
 set(CMAKE_VERBOSE_MAKEFILE ON)
 project (puyo-server)
-add_executable(puyo-server src/puyo-server.cpp) 
-
+#add_subdirectory(src)
+file(GLOB all_src
+        "src/*.h"
+        "src/*.cpp"
+    )
+add_executable(puyo-server ${all_src}) 
 set(Boost_USE_STATIC_LIBS OFF) 
 set(Boost_USE_MULTITHREADED ON)  
 set(Boost_USE_STATIC_RUNTIME OFF) 
