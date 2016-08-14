@@ -8,7 +8,12 @@ public:
     int sizex;
     int sizey;
     short **field;
-
+    short **droppingBlock;
+    int droppingBlockX;
+    int droppingBlockY;
+    int *doomBlocks;
+    bool blockDropped;
+    int ticksWait;
 private:
     long tick;
 };
