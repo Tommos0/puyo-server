@@ -5,9 +5,6 @@ class Game {
     public:
         Game(); 
         ~Game();
-    private:
-        short **field;
-
 };
 
 

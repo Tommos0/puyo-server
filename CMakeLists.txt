@@ -22,7 +22,7 @@ add_executable(puyo-server ${all_src})
 set(Boost_USE_STATIC_LIBS OFF) 
 set(Boost_USE_MULTITHREADED ON)  
 set(Boost_USE_STATIC_RUNTIME OFF) 
-find_package(Boost COMPONENTS system REQUIRED) 
+find_package(Boost COMPONENTS system thread REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS}) 
 target_link_libraries(puyo-server ${Boost_LIBRARIES})
 
