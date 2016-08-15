@@ -3,7 +3,8 @@
 #include <boost/thread/thread.hpp>
 #include <iostream>
 #include <stdlib.h>
-
+#include <string>
+#include <cstring>
 #ifdef CURSES
     #include "curses_render.h"
 #endif
@@ -19,9 +20,17 @@ Game::Game() {
     CursesRender *cursesRender = new CursesRender();
 #endif
     newDroppingBlock(gs);
+    int ch;
     for (int i = 0; i<1000; i++) {
         boost::this_thread::sleep(boost::posix_time::milliseconds(20));
 #ifdef CURSES
+        
+        if ((ch = cursesRender->getKey())) {
+            cursesRender->debug(std::to_string(ch).c_str());
+        }
+        
+        cursesRender->render(gs);
+        
         if (gs->ticksWait > 0) {
             gs->ticksWait--;
             continue;
@@ -32,12 +41,11 @@ Game::Game() {
                 dropBlock(gs);
             }
         } else {
-            removeHoles();
+            removeHoles(gs);
             if (clearBlocks(gs)) continue;
             if (dropDoomblocks(gs)) continue;
             newDroppingBlock(gs);
         }
-        cursesRender->render(gs);
 #endif
     }
     
@@ -81,7 +89,7 @@ bool Game::dropDoomblocks(GameState *gs) {
 void Game::newDroppingBlock(GameState *gs) {
     gs->blockDropped = false;
     gs->droppingBlockX = 5;
-    gs->droppingBlockY = 29;
+    gs->droppingBlockY = 28;
     gs->droppingBlock[0][0] = 0;
     gs->droppingBlock[1][0] = 0;
     gs->droppingBlock[0][1] = rand()%4+1;
