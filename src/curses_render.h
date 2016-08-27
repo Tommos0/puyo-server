@@ -1,7 +1,7 @@
 #ifndef CURSES_RENDER_H
 #define CURSES_RENDER_H
 
-#include "gamestate.h"
+#include "playerstate.h"
 
 extern "C" {
     #include <curses.h>
@@ -15,7 +15,7 @@ class CursesRender {
     public:
         CursesRender();
         ~CursesRender();
-        void render(GameState *);
+        void render(PlayerState *);
         void debug(const char *);
         char getKey();
         static const int K_LEFT = KEY_LEFT;

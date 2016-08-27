@@ -1,5 +1,5 @@
 #include "curses_render.h"
-#include "gamestate.h"
+#include "playerstate.h"
 extern "C" {
 #include <curses.h>
 }
@@ -26,11 +26,15 @@ CursesRender::~CursesRender() {
 }
 
 void CursesRender::renderBlock(short type, int x, int y) {
-    char c = symbols[type];
+    char c;
+    if (type == -1) {
+        c = symbols[9];
+    }
+    else c = symbols[type];
     mvaddch(30+2-y,x+2,c);
 }
 
-void CursesRender::render(GameState *gs) {
+void CursesRender::render(PlayerState *gs) {
     for (int x = 0; x < gs->sizex; x++) {
         for (int y = 0; y < gs->sizey; y++) {
             renderBlock(gs->field[x][y], x, y);

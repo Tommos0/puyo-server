@@ -1,6 +1,6 @@
-#include "gamestate.h"
+#include "playerstate.h"
 #include <iostream>
-GameState::GameState(int sizex, int sizey) {
+PlayerState::PlayerState(int sizex, int sizey) {
     this->sizex = sizex;
     this->sizey = sizey;
     field = new short*[sizex];
@@ -15,12 +15,12 @@ GameState::GameState(int sizex, int sizey) {
     tick = 0;
     ticksWait = 0;
 //    memset(field,0,sizeof(int)*sizex*sizey);
-    std::cout << "gamestate created" << std::endl;
+    std::cout << "playerstate created" << std::endl;
     
 }
-GameState::~GameState() {
+PlayerState::~PlayerState() {
     
-    std::cout << "gamestate destroyed" << std::endl;
+    std::cout << "playerstate destroyed" << std::endl;
 }
 
 

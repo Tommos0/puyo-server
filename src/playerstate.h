@@ -1,10 +1,10 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-class GameState {
+class PlayerState {
 public:
-    GameState(int, int);
-    ~GameState();
+    PlayerState(int, int);
+    ~PlayerState();
     int sizex;
     int sizey;
     short **field;
